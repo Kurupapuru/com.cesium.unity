@@ -136,6 +136,11 @@ namespace Build
                 }
 
                 unityDir = new DirectoryInfo("/Applications/Unity/Hub/Editor/");
+            } else {
+                const string env_var = "UNITY";
+                string? path = Environment.GetEnvironmentVariable(env_var);
+                if (path != null && File.Exists(path))
+                    return new Unity(path);
             }
 
             if (unityDir == null)
